@@ -42,3 +42,11 @@ bool deauthDevice(uint8_t* mac, uint8_t wifi_channel) {
     return success;
 }
 
+// setup function for activating the deauth process
+void setup() {
+    Serial.begin(115200);
+}
+
+
+
+
